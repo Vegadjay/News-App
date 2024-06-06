@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react';
+import Navbar from '../componants/Navbar.jsx'
+import News from '../componants/News.jsx'
+const App = () => {
+  return (
+    <>
+      <Navbar />
+      <News />
+    </>
+  );
+};
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-          
-      </div>
-    )
-  }
-}
+export default App;
