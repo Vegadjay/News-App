@@ -7,7 +7,7 @@ const News = (props) => {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true); // New state for loading
+  const [loading, setLoading] = useState(true);
   const itemsPerPage = 12;
 
   useEffect(() => {
@@ -15,11 +15,11 @@ const News = (props) => {
   }, [currentPage]);
 
   const fetchData = async () => {
-    setLoading(true); // Set loading to true before fetching data
+    setLoading(true);
 
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=tesla&from=2024-05-06&sortBy=publishedAt&apiKey=c3677ac491e64ce48003dfc11a1d7dbe&page=${currentPage}&pageSize=${itemsPerPage}`
+        `https://newsapi.org/v2/top-headlines?&category=${props.category}&country=${props.country}&apiKey=c3677ac491e64ce48003dfc11a1d7dbe&page=${currentPage}&pageSize=${itemsPerPage}`
       );
 
       if (response.data && response.data.articles) {
@@ -31,7 +31,7 @@ const News = (props) => {
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
-      setLoading(false); // Set loading to false after data is fetched or an error occurs
+      setLoading(false);
     }
   };
 
@@ -44,7 +44,7 @@ const News = (props) => {
   return (
     <>
       <div className="titlediv" style={{marginTop:'60px'}}>
-        <h1 className={`text-center text-${props.textcolor} mt-5`} style={{fontFamily:'Josefin Sans'}}>Welcome to Our News</h1>
+        <h1 className={`text-center text-${props.textcolor} mt-5`} style={{fontFamily:'Josefin Sans'}}>Welcome to Gorilla News</h1>
       </div>
       <div className={`container container-fluid my-5 bg-${props.mode} text-${props.textcolor}`}>
         {loading ? (
