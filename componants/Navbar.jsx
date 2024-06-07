@@ -1,6 +1,9 @@
 import React from "react";
 import "./index.css";
+import { useLocation } from 'react-router-dom';
+
 const Navbar = (props) => {
+  const location = useLocation();
 
   return (
     <>
@@ -25,38 +28,66 @@ const Navbar = (props) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/general">
-                General
+                <a
+                  className={`nav-link ${location.pathname === "/general" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/general"
+                >
+                  General
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/business">
-                Business
+                <a
+                  className={`nav-link ${location.pathname === "/business" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/business"
+                >
+                  Business
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/entertainment">
-                Entertainment
+                <a
+                  className={`nav-link ${location.pathname === "/entertainment" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/entertainment"
+                >
+                  Entertainment
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/health">
-                Health
+                <a
+                  className={`nav-link ${location.pathname === "/health" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/health"
+                >
+                  Health
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/science">
-                Science
+                <a
+                  className={`nav-link ${location.pathname === "/science" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/science"
+                >
+                  Science
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/sports">
-                Sports
+                <a
+                  className={`nav-link ${location.pathname === "/sports" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/sports"
+                >
+                  Sports
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="/technology">
-                Technology
+                <a
+                  className={`nav-link ${location.pathname === "/technology" ? "active" : ""}`}
+                  aria-current="page"
+                  href="/technology"
+                >
+                  Technology
                 </a>
               </li>
               <li className="nav-item">
@@ -83,7 +114,5 @@ const Navbar = (props) => {
     </>
   );
 };
-Navbar.defaultProps = {
-  category: 'general'
-}
+
 export default Navbar;

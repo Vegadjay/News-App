@@ -1,15 +1,16 @@
+import { useGSAP } from '@gsap/react';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { gsap } from 'gsap';
+import React, { useEffect, useState } from 'react';
 import NewsItems from './NewsItems';
 import Spinner from './Spinner';
-import './index.css'
+import './index.css';
 const News = (props) => {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
   const itemsPerPage = 12;
-
   useEffect(() => {
     fetchData();
   }, [currentPage]);
@@ -43,7 +44,7 @@ const News = (props) => {
 
   return (
     <>
-      <div className="titlediv" style={{marginTop:'60px'}}>
+      <div className="titlediv" style={{marginTop:'80px'}}>
         <h1 className={`text-center text-${props.textcolor} mt-5`} style={{fontFamily:'Josefin Sans'}}>Welcome to Gorilla News</h1>
       </div>
       <div className={`container container-fluid my-5 bg-${props.mode} text-${props.textcolor}`}>
