@@ -1,6 +1,5 @@
 import React from "react";
 import "./index.css";
-import PropTypes from 'prop-types'
 const Navbar = (props) => {
 
   return (
@@ -10,7 +9,7 @@ const Navbar = (props) => {
       >
         <div className="container-fluid">
           <a className="navbar-brand" href="https://github.com/Vegadjay">
-            Click Here
+            Check My Github
           </a>
           <button
             className="navbar-toggler"
@@ -26,7 +25,7 @@ const Navbar = (props) => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/general">
+                <a className="nav-link" aria-current="page" href="/general">
                 General
                 </a>
               </li>
