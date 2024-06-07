@@ -56,9 +56,9 @@ const News = (props) => {
                 <div className="col mb-3 mb-md-4" key={index}>
                   <NewsItems
                     url={article.urlToImage || dummyImage}
-                    title={article.title || 'Dummy Title'}
-                    description={article.description || 'Dummy Description'}
-                    url1={article.url || 'Dummy URL'}
+                    title={article.title || 'News is not available'}
+                    description={article.description || 'Data is not available'}
+                    url1={article.url || 'Data is not available'}
                     mode1={props.mode}
                     textcolor={props.textcolor}
                   />
