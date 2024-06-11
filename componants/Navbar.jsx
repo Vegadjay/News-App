@@ -6,7 +6,7 @@ const Navbar = (props) => {
   const location = useLocation();
 
   return (
-    <nav className={`navbar navbar-expand-lg bg-body-tertiary navbar-${props.mode} bg-${props.mode} text-${props.textcolor}`}>
+    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} text-${props.textcolor}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="https://github.com/Vegadjay" style={{ fontSize: '1rem' }}>
           Check My Github

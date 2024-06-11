@@ -85,7 +85,7 @@ const News = (props) => {
     "https://via.placeholder.com/400x200?text=Image+Not+Available";
 
   return (
-    <div className="container bg-dark p-4">
+    <div className="container p-4">
       {/* bg-${props.mode} Add this class class*/}
       {loading && <Spinner />}
       {!loading && error && <ErrorMessage message={error} />}
