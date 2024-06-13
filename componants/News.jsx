@@ -107,8 +107,10 @@
                        mode1={props.mode}
                        textcolor={props.textcolor}
                        getWeb={article.source}
+                       newsfrom={article.source.name}
                        date={publishedDate.toLocaleString()}
-                     /> 
+                       border={props.bordercolor}
+                     />
                    </>
                  );
                })()}
