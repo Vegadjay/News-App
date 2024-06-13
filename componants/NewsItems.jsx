@@ -14,7 +14,7 @@ const NewsItems = ({
 
   return (
     <div
-      className={`card bg-${mode1} text-${textcolor} border border-${bordercolor}`}  style={{ minHeight: "550px" }}>
+      className={`card bg-${mode1} text-${textcolor} border border-${bordercolor}`}  style={{ minHeight: "570px" }}>
       <img src={url} className="card-img-top" alt="Image not available" style={{ height: "200px", objectFit: "cover" }}/>
       <div className="card-body">
         <div>
