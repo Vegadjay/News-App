@@ -18,14 +18,14 @@ const NewsItems = ({
       <img src={url} className="card-img-top" alt="Image not available" style={{ height: "200px", objectFit: "cover" }}/>
       <div className="card-body">
         <div>
-          <h5 className="card-title">{title}</h5>
+          <h5 className="card-title font-Nunito">{title}</h5>
           <span>
             <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary z-3">
               This news is from : {newsfrom}
             </span>
           </span>
           <p
-            className="card-text"
+            className="card-text font-Kanit"
             style={{ display: "-webkit-box", WebkitLineClamp: "3", WebkitBoxOrient: "vertical", overflow: "hidden" }}
           >
             {description}
