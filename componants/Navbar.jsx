@@ -4,11 +4,11 @@ import "./index.css";
 
 const Navbar = (props) => {
   const location = useLocation();
-
+  const isRootPath = location.pathname === '/';
   return (
-    <nav className={`navbar navbar-expand-lg fixed-top navbar-${props.mode} bg-${props.mode} text-${props.textcolor}`}>
+    <nav className={`navbar navbar-expand-lg fixed-top navbar-${props.mode} bg-${props.mode} text-${props.textcolor} font-poppins`}>
       <div className="container-fluid">
-        <a className="navbar-brand" href="https://github.com/Vegadjay" style={{ fontSize: '1rem' }}>
+        <a className="navbar-brand fw-bolder" href="https://github.com/Vegadjay" style={{ fontSize: '1rem' }}>
           Check My Github
         </a>
         <button
@@ -26,14 +26,14 @@ const Navbar = (props) => {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
             {['general', 'business', 'entertainment', 'health', 'science', 'sports', 'technology'].map((category) => (
               <li className="nav-item" key={category}>
-                <a
-                  className={`nav-link ${location.pathname === `/${category}` ? "active" : ""}`}
-                  href={`/${category}`}
-                  style={{ fontSize: '1rem' }}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </a>
-              </li>
+              <a
+              className={`nav-link fw-bold ${isRootPath && category === 'general' ? "active" : ""} ${location.pathname === `/${category}` ? "active" : ""}`}
+              href={`/${category}`}
+              style={{ fontSize: '1rem' }}
+              >
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </a>
+          </li>
             ))}
             <li className="nav-item">
               <div className="form-check form-switch d-flex align-items-center">
