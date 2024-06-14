@@ -1,9 +1,9 @@
 // App.jsx
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
 import Navbar from '../componants/Navbar.jsx';
-import News from '../componants/News.jsx';
+import News from '../componants/RenderingNews.jsx';
 
 const App = ({ category = 'general' }) => {
   const [mode, setMode] = useState("light");

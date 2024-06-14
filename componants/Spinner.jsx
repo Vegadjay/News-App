@@ -1,5 +1,5 @@
 import React from 'react'
-import img from './Loading2.gif'
+import img from './Loader2.gif'
 export const Spinner = () => {
   return (
     <div className='text-center'>
