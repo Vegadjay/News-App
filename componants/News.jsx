@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./index.css";
 import NewsItems from '../componants/NewsItems.jsx';
 import Spinner from '../componants/Spinner.jsx'
+import TypePingEffect from "../componants/type.jsx";
 const ErrorMessage = ({ message }) => (
   <div className="alert alert-danger" role="alert">
     {message}
@@ -26,62 +27,7 @@ const News = (props) => {
 
   const defaultCategory = "general";
   const defaultCountry = "us";
-  var TxtType = function (el, toRotate, period) {
-    this.toRotate = toRotate;
-    this.el = el;
-    this.loopNum = 0;
-    this.period = parseInt(period, 8) || 2000;
-    this.txt = '';
-    this.tick();
-    this.isDeleting = false;
-};
 
-TxtType.prototype.tick = function () {
-    var i = this.loopNum % this.toRotate.length;
-    var fullTxt = this.toRotate[i];
-
-    if (this.isDeleting) {
-        this.txt = fullTxt.substring(0, this.txt.length - 1);
-    } else {
-        this.txt = fullTxt.substring(0, this.txt.length + 1);
-    }
-
-    this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-    var that = this;
-    var delta = 200 - Math.random() * 100;
-
-    if (this.isDeleting) { delta /= 2; }
-
-    if (!this.isDeleting && this.txt === fullTxt) {
-        delta = this.period;
-        this.isDeleting = true;
-    } else if (this.isDeleting && this.txt === '') {
-        this.isDeleting = false;
-        this.loopNum++;
-        delta = 500;
-    }
-
-    setTimeout(function () {
-        that.tick();
-    }, delta);
-};
-
-window.onload = function () {
-    var elements = document.getElementsByClassName('typewrite');
-    for (var i = 0; i < elements.length; i++) {
-        var toRotate = elements[i].getAttribute('data-type');
-        var period = elements[i].getAttribute('data-period');
-        if (toRotate) {
-            new TxtType(elements[i], JSON.parse(toRotate), period);
-        }
-    }
-    var css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #000}";
-    document.body.appendChild(css);
-
-}
   useEffect(() => {
     fetchData();
   }, [currentPage, props.category, props.country, currentKeyIndex]);
@@ -132,10 +78,9 @@ window.onload = function () {
 
   return (
     <>
-      <h1 className={`text-center fw-bolder mt-5 text-${props.textcolor}`}>Welcome To Deer News 📰</h1>
-      <h4 className={`typewrite text-center text-${props.textcolor}`} data-period="1000" data-type='["Welcome to our news","Read Fresh News Daily"]'>
-      <span class="wrap"></span>
-      </h4>
+      <h1 className={`text-center fw-bolder mt-5 text-${props.textcolor}
+      font-Reddit-Mono`}>Welcome To Deer News 📰</h1>
+      <TypePingEffect textcolor={props.textcolor}/>
     <div className="container p-4">
       {/* bg-${props.mode} Add this class class*/}
       {loading && <Spinner />}
@@ -149,6 +94,7 @@ window.onload = function () {
                const publishedDate = new Date(article.publishedAt || new Date().toISOString());
                return (
                  <>
+                 {/* add fn for user click on nav thwt title was change */}
                    <div className="col mb-2 text-muted">
                    </div>
                    <NewsItems
