@@ -4,6 +4,8 @@
 
 -> If you run this app than fork this app and install all the modules of the npm package and run with npm run dev.
 
+-> Also You require to install routes and app is ready.
+
 -> This api is not free so this app is not deployable.
 
 -> Thankyou for visiting my app and do changes if you want.
