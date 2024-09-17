@@ -36,10 +36,8 @@ const News = (props) => {
     setError(null);
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?category=${
-          props.category || defaultCategory
-        }&country=${props.country || defaultCountry}&apiKey=${
-          apiKeys[currentKeyIndex]
+        `https://newsapi.org/v2/top-headlines?country=${defaultCountry || props.country}&category=${props.category || defaultCategory
+        }&apiKey=${apiKeys[currentKeyIndex]
         }&page=${currentPage}&pageSize=${itemsPerPage}`
       );
       props.setProgress(70);
@@ -78,62 +76,60 @@ const News = (props) => {
     <>
       <h1 className={`text-center fw-bolder mt-5 text-${props.textcolor}
       font-Reddit-Mono`}>Welcome To Deer News 📰</h1>
-      <TypePingEffect textcolor={props.textcolor}/>
-    <div className="container p-4">
-      {/* bg-${props.mode} Add this class class*/}
-      {loading && <Spinner />}
-      {!loading && error && <ErrorMessage message={error} />}
-      {!loading && !error && (
-        <>
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
-            {articles.map((article, index) => (
-             <div className="col mb-4" key={index}>
-             {(() => {
-               const publishedDate = new Date(article.publishedAt || new Date().toISOString());
-               return (
-                 <>
-                 {/* add fn for user click on nav thwt title was change */}
-                   <div className="col mb-2 text-muted">
-                   </div>
-                   <NewsItems
-                     url={article.urlToImage || dummyImage}
-                     title={article.title || "News is not available"}
-                     description={article.description || "Data is not available"}
-                     url1={article.url || "#"}
-                     mode1={props.mode}
-                     textcolor={props.textcolor}
-                     getWeb={article.source}
-                     newsfrom={article.source.name}
-                     date={publishedDate.toLocaleString()}
-                     border={props.bordercolor}
-                   />
-                 </>
-               );
-             })()}
-           </div>
-            ))}
-          </div>
-          <div className="d-flex justify-content-between mt-4">
-            <button
-              className="btn btn-primary"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
-        </>
-      )}
-    </div>
-  </>
+      <TypePingEffect textcolor={props.textcolor} />
+      <div className="container p-4">
+        {loading && <Spinner />}
+        {!loading && error && <ErrorMessage message={error} />}
+        {!loading && !error && (
+          <>
+            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+              {articles.map((article, index) => (
+                <div className="col mb-4" key={index}>
+                  {(() => {
+                    const publishedDate = new Date(article.publishedAt || new Date().toISOString());
+                    return (
+                      <>
+                        <div className="col mb-2 text-muted">
+                        </div>
+                        <NewsItems
+                          url={article.urlToImage || dummyImage}
+                          title={article.title || "News is not available"}
+                          description={article.description || "Data is not available"}
+                          url1={article.url || "#"}
+                          mode1={props.mode}
+                          textcolor={props.textcolor}
+                          getWeb={article.source}
+                          newsfrom={article.source.name}
+                          date={publishedDate.toLocaleString()}
+                          border={props.bordercolor}
+                        />
+                      </>
+                    );
+                  })()}
+                </div>
+              ))}
+            </div>
+            <div className="d-flex justify-content-between mt-4">
+              <button
+                className="btn btn-primary"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <button
+                className="btn btn-primary"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
-  };
+};
 
 export default News;
