@@ -1,5 +1,5 @@
 // App.jsx
-import React, { useState } from 'react';
+import React, { useReducer, useRef, useState } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingBar from 'react-top-loading-bar';
 import Navbar from '../componants/Navbar.jsx';
@@ -11,18 +11,21 @@ const App = ({ category = 'general' }) => {
   const [color, setTextcolor] = useState("black");
   const [progress, setProgress] = useState(0);
   const [border, setborderColor] = useState('black');
+  const mode1 = useRef("light");
 
   function toggleMode() {
-    if (mode === "light") {
+    if (mode1.current === "light") {
       setMode("dark");
-      document.body.style.backgroundColor = '#212529';
-      setModemsg("Enable Light Mode");
+      mode1.current = "dark";
+      setModemsg("Disable Dark Mode");
+      document.body.style.backgroundColor = "#121212";
       setTextcolor("white");
       setborderColor('black');
     } else {
+      setMode('light');
+      mode1.current = "light";
       setModemsg("Enable Dark Mode");
       document.body.style.backgroundColor = 'white';
-      setMode('light');
       setTextcolor("black");
       setborderColor('white');
     }
