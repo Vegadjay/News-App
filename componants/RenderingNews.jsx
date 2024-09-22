@@ -4,6 +4,7 @@ import NewsItems from './CardDesign.jsx';
 import Spinner from './Spinner.jsx';
 import TypePingEffect from "./TypingAnimation.jsx";
 import "./index.css";
+
 const ErrorMessage = ({ message }) => (
   <div className="alert alert-danger" role="alert">
     {message}
@@ -17,10 +18,13 @@ const News = (props) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const itemsPerPage = 12;
+
+  // Environment variables are now accessed correctly
   const apiKeys = [
-    "c3677ac491e64ce48003dfc11a1d7dbe",
-    "df8e59db2ed54b31b85b4b36650098c7",
+    import.meta.env.REACT_APP_API_KEY_1,
+    import.meta.env.REACT_APP_API_KEY_2
   ];
+
   const [currentKeyIndex, setCurrentKeyIndex] = useState(0);
 
   const defaultCategory = "general";
@@ -36,7 +40,7 @@ const News = (props) => {
     setError(null);
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=${defaultCountry || props.country}&category=${props.category || defaultCategory
+        `https://newsapi.org/v2/top-headlines?country=${props.country || defaultCountry}&category=${props.category || defaultCategory
         }&apiKey=${apiKeys[currentKeyIndex]
         }&page=${currentPage}&pageSize=${itemsPerPage}`
       );
@@ -50,8 +54,10 @@ const News = (props) => {
     } catch (error) {
       console.error("Error fetching data:", error);
       if (error.response && error.response.status === 429) {
+        // If we hit a rate limit error, switch to the next API key
         setCurrentKeyIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
       } else if (retries > 0) {
+        // Retry the request after a delay
         setTimeout(() => fetchData(retries - 1), 2000);
         return;
       } else {
@@ -74,8 +80,9 @@ const News = (props) => {
 
   return (
     <>
-      <h1 className={`text-center fw-bolder mt-5 text-${props.textcolor}
-      font-Reddit-Mono`}>Welcome To Deer News 📰</h1>
+      <h1 className={`text-center fw-bolder mt-5 text-${props.textcolor} font-Reddit-Mono`}>
+        Welcome To Deer News 📰
+      </h1>
       <TypePingEffect textcolor={props.textcolor} />
       <div className="container p-4">
         {loading && <Spinner />}
@@ -90,6 +97,7 @@ const News = (props) => {
                     return (
                       <>
                         <div className="col mb-2 text-muted">
+                          {/* Empty div for potential metadata */}
                         </div>
                         <NewsItems
                           url={article.urlToImage || dummyImage}
